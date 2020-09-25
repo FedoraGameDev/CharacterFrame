@@ -20,15 +20,6 @@ class GUI_Panel(blenderpy.types.Panel):
         layout.operator(StaticNames.CreateFrameID)
 
 
-class Create_Frame(blenderpy.types.Operator):
-    bl_label = StaticNames.CreateFrameName
-    bl_idname = StaticNames.CreateFrameID
-
-    def execute(self, context):
-        Debug.Log("Creating Frame!")
-        return {"FINISHED"}
-
-
 def register():
     Debug.Log("Loading GUI_Panel")
 
