@@ -11,13 +11,14 @@ class Debug:
         formatter = logging.Formatter(
             '%(asctime)s - %(levelname)s - %(message)s')
 
-        consoleHandler = logging.StreamHandler(sys.stdout)
-        consoleHandler.setLevel(logLevel)
-        consoleHandler.setFormatter(formatter)
-
         Debug.logger = logging.getLogger(__name__)
         Debug.logger.setLevel(logLevel)
-        Debug.logger.addHandler(consoleHandler)
+
+        if len(Debug.logger.handlers) <= 1:
+            consoleHandler = logging.StreamHandler(sys.stdout)
+            consoleHandler.setLevel(logLevel)
+            consoleHandler.setFormatter(formatter)
+            Debug.logger.addHandler(consoleHandler)
 
     @staticmethod
     def Log(message: str) -> None:
