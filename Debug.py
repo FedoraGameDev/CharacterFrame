@@ -1,43 +1,40 @@
 import sys
 import logging
 
-__all__ = ("Debug")
-
 
 class Debug:
-    class __Singleton:
-        logger = None
+    logger = None
 
-        def __init__(self):
-            logLevel = logging.DEBUG
-            formatter = logging.Formatter(
-                '%(asctime)s - %(levelname)s - %(message)s')
+    @staticmethod
+    def Init():
+        logLevel = logging.DEBUG
+        formatter = logging.Formatter(
+            '%(asctime)s - %(levelname)s - %(message)s')
 
-            consoleHandler = logging.StreamHandler(sys.stdout)
-            consoleHandler.setLevel(logLevel)
-            consoleHandler.setFormatter(formatter)
+        consoleHandler = logging.StreamHandler(sys.stdout)
+        consoleHandler.setLevel(logLevel)
+        consoleHandler.setFormatter(formatter)
 
-            self.logger = logging.getLogger(__name__)
-            self.logger.setLevel(logLevel)
-            self.logger.addHandler(consoleHandler)
+        Debug.logger = logging.getLogger(__name__)
+        Debug.logger.setLevel(logLevel)
+        Debug.logger.addHandler(consoleHandler)
 
-    instance = None
+    @staticmethod
+    def Log(message: str) -> None:
+        Debug.logger.debug(message)
 
-    def __init__(self):
-        if not Debug.instance:
-            Debug.instance = Debug.__Singleton()
+    @staticmethod
+    def LogInfo(message: str) -> None:
+        Debug.logger.info(message)
 
-    def Log(self, message: str) -> None:
-        Debug.instance.logger.debug(message)
+    @staticmethod
+    def LogWarning(message: str) -> None:
+        Debug.logger.warning(message)
 
-    def LogInfo(self, message: str) -> None:
-        Debug.instance.logger.info(message)
+    @staticmethod
+    def LogError(message: str) -> None:
+        Debug.logger.error(message)
 
-    def LogWarning(self, message: str) -> None:
-        Debug.instance.logger.warning(message)
-
-    def LogError(self, message: str) -> None:
-        Debug.instance.logger.error(message)
-
-    def LogCritical(self, message: str) -> None:
-        Debug.instance.logger.critical(message)
+    @staticmethod
+    def LogCritical(message: str) -> None:
+        Debug.logger.critical(message)

@@ -11,24 +11,30 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+from .Debug import Debug
+from . import auto_load
+
+
 bl_info = {
-    "name" : "Character Frame",
-    "author" : "Fedora Dev",
-    "description" : "Create characters from structural frames.",
-    "blender" : (2, 90, 0),
-    "version" : (0, 0, 1),
-    "location" : "",
-    "warning" : "",
-    "category" : "Characters",
+    "name": "Character Frame",
+    "author": "Fedora Dev",
+    "description": "Create characters from structural frames.",
+    "blender": (2, 90, 0),
+    "version": (0, 0, 1),
+    "location": "",
+    "warning": "",
+    "category": "Characters",
     "support": "COMMUNITY"
 }
 
-from . import auto_load
 
+Debug.Init()
 auto_load.init()
+
 
 def register():
     auto_load.register()
+
 
 def unregister():
     auto_load.unregister()

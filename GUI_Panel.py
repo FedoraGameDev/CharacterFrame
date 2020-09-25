@@ -1,7 +1,6 @@
 import bpy as blenderpy
 from .Debug import Debug
-
-_debug = Debug()
+from .Static import StaticNames
 
 
 class GUI_Panel(blenderpy.types.Panel):
@@ -16,12 +15,23 @@ class GUI_Panel(blenderpy.types.Panel):
         return context.mode in {"OBJECT", "EDIT_MESH", "PAINT_WEIGHT", "POSE"}
 
     def draw(self, context):
-        self.layout.label(text="Hello World")
+        layout = self.layout
+
+        layout.operator(StaticNames.CreateFrameID)
+
+
+class Create_Frame(blenderpy.types.Operator):
+    bl_label = StaticNames.CreateFrameName
+    bl_idname = StaticNames.CreateFrameID
+
+    def execute(self, context):
+        Debug.Log("Creating Frame!")
+        return {"FINISHED"}
 
 
 def register():
-    _debug.Log("Loading GUI_Panel")
+    Debug.Log("Loading GUI_Panel")
 
 
 def unregister():
-    _debug.Log("Unloading GUI_Panel")
+    Debug.Log("Unloading GUI_Panel")
