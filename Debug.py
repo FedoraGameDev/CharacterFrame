@@ -6,7 +6,7 @@ class Debug:
     logger = None
 
     @staticmethod
-    def Init():
+    def Init() -> None:
         logLevel = logging.DEBUG
         formatter = logging.Formatter(
             '%(asctime)s - %(levelname)s - %(message)s')

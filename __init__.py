@@ -32,9 +32,9 @@ Debug.Init()
 auto_load.init()
 
 
-def register():
+def register() -> None:
     auto_load.register()
 
 
-def unregister():
+def unregister() -> None:
     auto_load.unregister()

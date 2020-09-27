@@ -7,12 +7,12 @@ class Create_Frame(blenderpy.types.Operator):
     bl_label = StaticNames.CreateFrameName
     bl_idname = StaticNames.CreateFrameID
 
-    def execute(self, context):
+    def execute(self: Create_Frame, context: blenderpy.types.Context) -> any:
         Debug.Log("Creating Frame!")
         return {"FINISHED"}
 
-    def register():
+    def register() -> None:
         Debug.Log("Loading Create_Frame")
 
-    def unregister():
+    def unregister() -> None:
         Debug.Log("Unloading Create_Frame")

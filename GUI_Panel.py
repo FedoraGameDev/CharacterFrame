@@ -11,7 +11,7 @@ class GUI_Panel(blenderpy.types.Panel):
     bl_category = "Character Frame"
 
     @classmethod
-    def poll(cls, context):
+    def poll(self: GUI_Panel, context: blenderpy.types.Context) -> bool:
         return context.mode in {"OBJECT", "EDIT_MESH", "PAINT_WEIGHT", "POSE"}
 
     def draw(self, context):
@@ -20,9 +20,9 @@ class GUI_Panel(blenderpy.types.Panel):
         layout.operator(StaticNames.CreateFrameID)
 
 
-def register():
+def register() -> None:
     Debug.Log("Loading GUI_Panel")
 
 
-def unregister():
+def unregister() -> None:
     Debug.Log("Unloading GUI_Panel")
