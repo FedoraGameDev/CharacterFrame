@@ -12,7 +12,7 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from .Debug import Debug
-from . import auto_load
+from . import AutoLoad
 
 
 bl_info = {
@@ -29,12 +29,12 @@ bl_info = {
 
 
 Debug.Init()
-auto_load.init()
+AutoLoad.init()
 
 
 def register() -> None:
-    auto_load.register()
+    AutoLoad.register()
 
 
 def unregister() -> None:
-    auto_load.unregister()
+    AutoLoad.unregister()
