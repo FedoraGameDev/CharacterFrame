@@ -5,6 +5,7 @@ from ..ReturnCodes import FINISHED
 from ..Debug import Debug
 from ..Static import StaticNames, StaticDirs
 from ..DataTypes.Frame import Frame
+from ..DataTypes.Point import Point
 from ..DataManagement.DataManager import DataManager
 from ..ErrorHandling.ErrorHandler import ErrorHandler
 from ..ErrorHandling.Errors import NotEnoughSelectedException, SelectedTooManyException, SelectedObjectNotMeshException
@@ -25,23 +26,24 @@ class MakeFrame(Operator):
 
     def GetSelectedObjectFromSelection(self, selection: List[Object]) -> Object:
         lengthOfSelection: int = len(selection)
-        tooManyObjectsSelected: bool = lengthOfSelection > 1
-        noObjectSelected: bool = lengthOfSelection == 0
 
-        if tooManyObjectsSelected:
+        if lengthOfSelection > 1:
             raise SelectedTooManyException(1)
 
-        if noObjectSelected:
+        if lengthOfSelection == 0:
             raise NotEnoughSelectedException(1)
 
         selectedObject = selection[0]
-        selectedObjectTypeIsMesh = selectedObject.type == "MESH"
 
-        if not selectedObjectTypeIsMesh:
+        if not selectedObject.type == "MESH":
             raise SelectedObjectNotMeshException()
 
         return selectedObject
 
     def MakeFrameFromObject(self, obj: Object) -> None:
         mesh = obj.data
-        Debug.Log(mesh)
+        points: List[Point] = []
+        for vertice in mesh.vertices:
+            points.append(Point(vertice.co))
+        frame = Frame(points)
+        Debug.Log(frame)
