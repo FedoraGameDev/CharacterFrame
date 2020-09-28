@@ -3,9 +3,11 @@ from pathlib import Path
 
 class StaticDirs:
     RootDirectory = Path(__file__).parent.absolute()
-    ResourcesDirectory = Path(RootDirectory.__str__() + "/Resources")
-    LocalFrameDatabase = Path(ResourcesDirectory.__str__() + "/Frames")
-    LocalPartDatabase = Path(ResourcesDirectory.__str__() + "/Parts")
+    ResourcesDirectory = Path(f"{str(RootDirectory)}/Resources")
+    DefaultFrameDatabase = Path(f"{str(ResourcesDirectory)}/Frames/Default")
+    DefaultFillerDatabase = Path(f"{str(ResourcesDirectory)}/Fillers/Default")
+    LocalFrameDatabase = Path(f"{str(ResourcesDirectory)}/Frames/Local")
+    LocalFillerDatabase = Path(f"{str(ResourcesDirectory)}/Fillers/Local")
 
 
 class StaticNames:
