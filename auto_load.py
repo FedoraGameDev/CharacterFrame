@@ -6,7 +6,8 @@ import inspect
 import pkgutil
 import importlib
 from pathlib import Path
-from .Frame_Operators.Create_Frame import Create_Frame
+from .FrameOperators.CreateFrame import CreateFrame
+from .FrameOperators.MakeFrame import MakeFrame
 
 __all__ = (
     "init",

@@ -12,3 +12,5 @@ class StaticNames:
     Category = "character_frame"
     CreateFrameID = f"{Category}.create_frame"
     CreateFrameName = "New Frame"
+    MakeFrameID = f"{Category}.make_frame"
+    MakeFrameName = "Make Frame"

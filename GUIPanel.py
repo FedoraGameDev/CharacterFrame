@@ -3,7 +3,7 @@ from .Debug import Debug
 from .Static import StaticNames
 
 
-class GUI_Panel(blenderpy.types.Panel):
+class GUIPanel(blenderpy.types.Panel):
     bl_label = "Character Frame"
     bl_idname = "OBJECT_PT_character_frame"
     bl_space_type = "VIEW_3D"
@@ -11,18 +11,19 @@ class GUI_Panel(blenderpy.types.Panel):
     bl_category = "Character Frame"
 
     @classmethod
-    def poll(self: GUI_Panel, context: blenderpy.types.Context) -> bool:
-        return context.mode in {"OBJECT", "EDIT_MESH", "PAINT_WEIGHT", "POSE"}
+    def poll(self, context: blenderpy.types.Context) -> bool:
+        return context.mode in {"OBJECT", "EDIT_MESH", "PAINT_WEIGHT", "POSE", "VERTEX_PAINT"}
 
-    def draw(self, context):
+    def draw(self, context) -> None:
         layout = self.layout
 
         layout.operator(StaticNames.CreateFrameID)
+        layout.operator(StaticNames.MakeFrameID)
 
 
 def register() -> None:
-    Debug.Log("Loading GUI_Panel")
+    Debug.Log("Loading GUIPanel")
 
 
 def unregister() -> None:
-    Debug.Log("Unloading GUI_Panel")
+    Debug.Log("Unloading GUIPanel")
