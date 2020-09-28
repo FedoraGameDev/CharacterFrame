@@ -1,6 +1,29 @@
 import sys
 import logging
 
+BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE = range(8)
+RESET_SEQ = "\033[0m"
+COLOR_SEQ = "\033[1;%dm"
+COLORS = {
+    "WARNING": YELLOW,
+    "INFO": GREEN,
+    "DEBUG": BLUE,
+    "CRITICAL": MAGENTA,
+    "ERROR": RED
+}
+
+
+class ColoredFormatter(logging.Formatter):
+    def format(self, record):
+        levelName = record.levelname
+        message = record.msg
+        if levelName in COLORS:
+            record.levelname = COLOR_SEQ % (
+                30 + COLORS[levelName]) + levelName + RESET_SEQ
+            record.msg = COLOR_SEQ % (
+                30 + COLORS[levelName]) + str(message) + RESET_SEQ
+        return logging.Formatter.format(self, record)
+
 
 class Debug:
     logger = None
@@ -8,8 +31,8 @@ class Debug:
     @staticmethod
     def Init() -> None:
         logLevel = logging.DEBUG
-        formatter = logging.Formatter(
-            '%(asctime)s - %(levelname)s - %(message)s')
+        formatter = ColoredFormatter(
+            '[%(levelname)-19s] - %(message)s')
 
         Debug.logger = logging.getLogger(__name__)
         Debug.logger.setLevel(logLevel)

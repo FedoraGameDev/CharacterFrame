@@ -3,6 +3,8 @@ from bpy.types import Context, Object, Operator
 from typing import List
 from ..Debug import Debug
 from ..Static import StaticNames, StaticDirs
+from ..ErrorHandling.ErrorHandler import ErrorHandler
+from ..ErrorHandling.Errors import NotEnoughSelectedException, SelectedTooManyException
 
 
 class MakeFrame(Operator):
@@ -10,24 +12,26 @@ class MakeFrame(Operator):
     bl_idname = StaticNames.MakeFrameID
 
     def execute(self, context: Context) -> any:
-        allSelectedObjects: List[Object] = context.selected_objects
-        lengthOfSelectedObjects: int = len(allSelectedObjects)
-        tooManyObjectsSelected: bool = lengthOfSelectedObjects > 1
-        noObjectSelected: bool = lengthOfSelectedObjects == 0
+        ErrorHandler.Try(lambda: self.MakeFrameFromContext(context))
+        return {"FINISHED"}
 
-        if tooManyObjectsSelected:
-            Debug.LogError("Please ensure only 1 object is selected.")
-            return {"FINISHED"}
-
-        if noObjectSelected:
-            Debug.LogError("One object must be selected.")
-            return {"FINISHED"}
-
-        selectedObject: Object = allSelectedObjects[0]
-
+    def MakeFrameFromContext(self, context: Context):
+        selectedObject = self.GetSelectedObjectFromSelection(
+            context.selected_objects)
         self.MakeFrame(selectedObject)
 
-        return {"FINISHED"}
+    def GetSelectedObjectFromSelection(self, selection: List[Object]) -> Object:
+        lengthOfSelection: int = len(selection)
+        tooManyObjectsSelected: bool = lengthOfSelection > 1
+        noObjectSelected: bool = lengthOfSelection == 0
+
+        if tooManyObjectsSelected:
+            raise SelectedTooManyException(1)
+
+        if noObjectSelected:
+            raise NotEnoughSelectedException(1)
+
+        return selection[0]
 
     def MakeFrame(self, obj: Object) -> None:
         Debug.Log(obj)

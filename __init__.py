@@ -34,6 +34,11 @@ auto_load.init()
 
 def register() -> None:
     auto_load.register()
+    # Debug.Log("Test Log")
+    # Debug.LogInfo("Test Info")
+    # Debug.LogWarning("Test Warning")
+    # Debug.LogCritical("Test Critical")
+    # Debug.LogError("Test Error")
 
 
 def unregister() -> None:
