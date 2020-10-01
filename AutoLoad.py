@@ -8,6 +8,7 @@ import importlib
 from pathlib import Path
 from .FrameOperators.CreateFrame import CreateFrame
 from .FrameOperators.MakeFrame import MakeFrame
+from .Panels.ConfirmStringPanel import ConfirmStringOperator
 
 __all__ = (
     "init",

@@ -1,19 +1,15 @@
 from typing import Tuple
 
-Vector3 = Tuple[float, float, float]
-
 
 class Point:
-    def __init__(self, position: Vector3):
-        self.position = position
+    x: float
+    y: float
+    z: float
+
+    def __init__(self, position: Tuple[float, float, float]):
+        self.x = position[0]
+        self.y = position[1]
+        self.z = position[2]
 
     def __str__(self) -> str:
-        return f"({self._position[0]:.2f},{self._position[1]:.2f},{self._position[2]:.2f})"
-
-    def GetPosition(self) -> Vector3:
-        return self._position
-
-    def SetPosition(self, position: Vector3) -> None:
-        self._position = position
-
-    position = property(GetPosition, SetPosition)
+        return f"({self.x:.2f}, {self.y:.2f}, {self.z:.2f})"

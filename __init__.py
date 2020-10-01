@@ -14,7 +14,6 @@
 from .Debug import Debug
 from . import AutoLoad
 
-
 bl_info = {
     "name": "Character Frame",
     "author": "Fedora Dev",
