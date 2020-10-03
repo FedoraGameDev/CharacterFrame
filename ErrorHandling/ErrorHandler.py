@@ -1,3 +1,5 @@
+import sys
+from .Errors import ExceptionMessage
 from typing import Callable
 from ..Debug import Debug
 
@@ -7,5 +9,7 @@ class ErrorHandler:
     def Try(execute: Callable):
         try:
             execute()
-        except Exception as error:
+        except ExceptionMessage as error:
             Debug.LogError(error.message)
+        except Exception as error:
+            Debug.LogException("An Error Occured.")

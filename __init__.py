@@ -12,6 +12,8 @@
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from .Debug import Debug
+from .ErrorHandling.ErrorHandler import ErrorHandler
+from .DataManagement.SessionMemory import SessionMemory
 from . import AutoLoad
 
 bl_info = {
@@ -27,13 +29,16 @@ bl_info = {
 }
 
 
-Debug.Init()
-AutoLoad.init()
-
-
-def register() -> None:
+def Init() -> None:
+    Debug.Init()
+    SessionMemory.Init()
+    AutoLoad.init()
     AutoLoad.register()
 
 
+def register() -> None:
+    ErrorHandler.Try(lambda: Init())
+
+
 def unregister() -> None:
-    AutoLoad.unregister()
+    ErrorHandler.Try(lambda: AutoLoad.unregister())

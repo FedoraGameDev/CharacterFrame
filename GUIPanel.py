@@ -22,8 +22,8 @@ class GUIPanel(blenderpy.types.Panel):
 
 
 def register() -> None:
-    Debug.Log("Loading GUIPanel")
+    Debug.LogInfo("Loading GUIPanel")
 
 
 def unregister() -> None:
-    Debug.Log("Unloading GUIPanel")
+    Debug.LogInfo("Unloading GUIPanel")

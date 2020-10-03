@@ -16,7 +16,3 @@ class StaticNames:
     CreateFrameName = "New Frame"
     MakeFrameID = f"{Category}.make_frame"
     MakeFrameName = "Make Frame"
-    ConfirmStringOpID = f"{Category}.confirm_string_op"
-    ConfirmStringOpName = "Confirm String"
-    ConfirmStringPanelID = f"{Category}.confirm_string_panel"
-    ConfirmStringPanelName = "Confirm String"
