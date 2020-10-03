@@ -12,7 +12,21 @@ class StaticDirs:
 
 class StaticNames:
     Category = "character_frame"
-    CreateFrameID = f"{Category}.create_frame"
-    CreateFrameName = "New Frame"
     MakeFrameID = f"{Category}.make_frame"
     MakeFrameName = "Make Frame"
+    AddConnectorID = f"{Category}.add_connector"
+    AddConnectorName = "Add Connector"
+    MakeConnectorID = f"{Category}.make_connector"
+    MakeConnectorName = "Make Connector"
+
+    PropPrefix = "CF_"
+    PropFramePrefix = "Frame_"
+    PropConnectorPrefix = "Connector_"
+    PropObjectType = f"{PropPrefix}ObjectType"
+    PropFrameName = f"{PropPrefix}{PropFramePrefix}Name"
+    PropConnectorName = f"{PropPrefix}{PropConnectorPrefix}Name"
+
+
+class ObjectTypes:
+    Frame = "Frame"
+    Connector = "Connector"

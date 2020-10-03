@@ -6,8 +6,9 @@ import inspect
 import pkgutil
 import importlib
 from pathlib import Path
-from .FrameOperators.CreateFrame import CreateFrame
-from .FrameOperators.MakeFrame import MakeFrame
+from .Operators.MakeFrame import MakeFrame
+from .Operators.AddConnector import AddConnector
+from .Operators.MakeConnector import MakeConnector
 
 __all__ = (
     "init",

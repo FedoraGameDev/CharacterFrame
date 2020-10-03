@@ -17,8 +17,9 @@ class GUIPanel(blenderpy.types.Panel):
     def draw(self, context) -> None:
         layout = self.layout
 
-        layout.operator(StaticNames.CreateFrameID)
         layout.operator(StaticNames.MakeFrameID)
+        layout.operator(StaticNames.MakeConnectorID)
+        layout.operator(StaticNames.AddConnectorID)
 
 
 def register() -> None:
