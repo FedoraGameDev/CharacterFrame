@@ -18,5 +18,6 @@ class AddConnector(Operator):
 
         if StaticNames.PropObjectType in firstObject:
             if StaticNames.PropObjectType in secondObject:
-                return firstObject.get(StaticNames.PropObjectType) == ObjectTypes.Frame
+                if firstObject.get(StaticNames.PropObjectType) == ObjectTypes.Frame:
+                    return secondObject.get(StaticNames.PropObjectType) == ObjectTypes.Connector
         return False
